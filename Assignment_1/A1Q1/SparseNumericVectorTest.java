@@ -1,7 +1,5 @@
 package A1Q1;
 
-import com.sun.deploy.util.ArrayUtil;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,21 +32,26 @@ public class SparseNumericVectorTest {
         Random rnd = ThreadLocalRandom.current();
 
         for (int i = 0; i < unsorted.length; i++) {
-            long rand = smallValues ? ThreadLocalRandom.current().nextLong(1, numberOfElements + 1) : rnd.nextLong();
+            long rand = smallValues ? ThreadLocalRandom.current().nextLong(1, numberOfElements + 25) : rnd.nextLong();
             while (Arrays.asList(unsorted).contains(rand) || rand < 1) {
-                rand = smallValues ? ThreadLocalRandom.current().nextLong(1, numberOfElements + 1) : rnd.nextLong();
+                rand = smallValues ? ThreadLocalRandom.current().nextLong(1, numberOfElements + 25) : rnd.nextLong();
             }
             unsorted[i] = rand;
         }
 
         // Add random set to linked list
         for (long num : unsorted) {
-            double val = rnd.nextDouble();
-            while (val == 0) {
+            double val = rnd.nextDouble() + 0.01;
+            while (val == 0.0d) {
                 val = rnd.nextDouble();
             }
-            val *= 10d;
-            val = Math.round (val * 100.0) / 100.0;
+            val *= 10.0d;
+            val = (double)Math.round(val * 100.0d) / 100.0d;
+
+            if (val == 0.0d) {
+                fail("This isn't supposed to happen");
+            }
+
             vector.add(new SparseNumericElement(num, val));
         }
 
@@ -59,20 +62,24 @@ public class SparseNumericVectorTest {
     public boolean verifyEqual(Long[] array, SparseNumericVector vector) {
         // Verify linked list is sorted
         SparseNumericIterator iterator = new SparseNumericIterator(vector);
-        System.out.println("Head: " +  X.head.getElement().getIndex());
         for (long num : array) {
             if (!iterator.hasNext()) {
+                System.out.println("Head: " +  X.head.getElement().getIndex());
+                System.out.println("Tail: " +  X.tail.getElement().getIndex());
+                System.out.println(array);
+                System.out.println(X);
                 fail("List is missing elements");
             }
 
             if (num != iterator.position.getElement().getIndex()) {
+                System.out.println("Head: " +  X.head.getElement().getIndex());
+                System.out.println("Tail: " +  X.tail.getElement().getIndex());
+                System.out.println(array);
+                System.out.println(X);
                 fail("Expected: " + num + ", Actual: " + iterator.position.getElement().getIndex());
-            } else {
-                System.out.println("Expected: " +  num + " | Actual: " + iterator.position.getElement().getIndex());
             }
             iterator.next();
         }
-        System.out.println("Tail: " +  X.tail.getElement().getIndex());
         return true;
     }
 
@@ -98,10 +105,14 @@ public class SparseNumericVectorTest {
     @Test
     public void testAdd5() {
         // Generate Random Set
-        Long[] testArray = generateArray(50, X, true);
+        // Works for sizes from 1 to 100, Alternating between using small numbers and large ones
+        for (int i = 1; i < 100; i++) {
+            X = new SparseNumericVector();
+            Long[] testArray = generateArray(i, X, i % 2 == 0);
 
-        // Verify
-        verifyEqual(testArray, X);
+            // Verify
+            verifyEqual(testArray, X);
+        }
     }
 
     @Test
@@ -122,9 +133,12 @@ public class SparseNumericVectorTest {
 
     @Test
     public void testRemove2() {
+        // Add and remove one
         X.add(new SparseNumericElement(15, 3));
         assertTrue(X.remove(15L));
         assertEquals(0, X.size);
+        assertTrue(X.head == null);
+        assertTrue(X.tail == null);
     }
 
     @Test
@@ -166,29 +180,30 @@ public class SparseNumericVectorTest {
         // Test randomized
         Random rnd = ThreadLocalRandom.current();
 
-        int elementsToRemove = rnd.nextInt(29) + 1;
+        // Removal for linked list size 1 to 100, alternating between small and large numbers
+        for (int i = 1; i < 100; i++) {
+            X = new SparseNumericVector();
+            int elementsToRemove = rnd.nextInt(i);
 
-        System.out.println("Keeping " + elementsToRemove + " from list");
+            List<Long> testArray = new LinkedList<>(Arrays.asList(generateArray(i, X, i % 2 == 0)));
+            List<Long> removed = new LinkedList<>();
+            removed.addAll(testArray);
 
-        List<Long> testArray = new LinkedList<>(Arrays.asList(generateArray(30, X, false)));
-        List<Long> removed = new LinkedList<>();
-        removed.addAll(testArray);
+            // Select elements to remove
+            for (int j = 0; j < elementsToRemove; j++) {
+                removed.remove(rnd.nextInt(removed.size() - 1));
+            }
 
-        // Select elements to remove
-        for (int i = 0; i < elementsToRemove; i++) {
-            removed.remove(rnd.nextInt(removed.size() - 1));
+            testArray.removeAll(removed);
+
+            // Remove elements from linked list
+            for (Long num : removed) {
+                X.remove(num);
+            }
+
+            assertEquals(testArray.size(), X.size);
+            verifyEqual(testArray.toArray(new Long[testArray.size()]), X);
         }
-
-        testArray.removeAll(removed);
-
-        // Remove elements from linked list
-        for (Long num : removed) {
-            X.remove(num);
-        }
-
-        assertEquals(testArray.size(), X.size);
-        verifyEqual(testArray.toArray(new Long[testArray.size()]), X);
-        System.out.print("PASS\n");
     }
 
     @Test
@@ -207,7 +222,7 @@ public class SparseNumericVectorTest {
     @Test
     public void testRemove7() {
         // Remove everything
-        Long[] testArray = generateArray(30, X, false);
+        Long[] testArray = generateArray(ThreadLocalRandom.current().nextInt(100), X, false);
         for (Long num : testArray) {
             X.remove(num);
         }
@@ -231,6 +246,10 @@ public class SparseNumericVectorTest {
         // Get all equal values from both arrays
         xArray.retainAll(yArray);
 
+        if (xArray.size() == 0 ) {
+            return;
+        }
+
         // Get all values from X
         List<Double> xValues = new LinkedList<>();
 
@@ -252,7 +271,6 @@ public class SparseNumericVectorTest {
             if (iterator.position.getElement().getIndex() == index) {
                 double yVal = iterator.position.getElement().getValue();;
                 projection += value * yVal;
-                System.out.println("X: " + value + "Y: " + yVal + " | " + value * yVal + " | " + projection);
                 if (xArrayIterator.hasNext()) {
                     index = (Long) xArrayIterator.next();
                     value = (Double) xValuesIterator.next();
@@ -270,30 +288,6 @@ public class SparseNumericVectorTest {
         computeProjection( new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>());
 
         assertEquals(projection, actual, 0.0001);
-
-        /*
-        double projection;
-
-        X.add(new SparseNumericElement(150000, 3.1415));
-        X.add(new SparseNumericElement(15, 3));
-        X.add(new SparseNumericElement(1500, 3.14));
-        X.add(new SparseNumericElement(150, 3.1));
-        X.add(new SparseNumericElement(15000, 3.141));
-        Y.add(new SparseNumericElement(150000, 1));
-        Y.add(new SparseNumericElement(15, 1));
-        X.remove((long) 150);
-
-        projection = X.dot(Y);
-
-        System.out.println("The inner product of");
-        System.out.print(X);
-        System.out.println("and");
-        System.out.print(Y);
-        System.out.println("is ");
-        System.out.printf("%.5f\n\n",projection); //answer should be 3*1 + 3.1415*1 = 6.1415
-
-        assertEquals(6.1415, projection, 0.0001);
-        */
     }
 
     @Test
@@ -304,8 +298,6 @@ public class SparseNumericVectorTest {
         double actual = X.dot(Y);
         computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(testArray)));
 
-        System.out.println(X);
-        System.out.println(Y);
         assertEquals(projection, actual, 0.0001);
     }
 
@@ -317,53 +309,59 @@ public class SparseNumericVectorTest {
         double actual = X.dot(Y);
         computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(testArray)));
 
-        System.out.println(X);
-        System.out.println(Y);
-        System.out.println("X Dot Y = " + projection);
         assertEquals(projection, actual, 0.0001);
     }
 
     @Test
     public void testDot4() {
         // Randomized dot of same size
-        Long[] testArray = generateArray(5, X, true);
-        Long[] secondTestArray = generateArray(5, Y, true);
-        double actual = X.dot(Y);
-        computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(secondTestArray)));
+        for (int i = 0; i < 100; i++) {
+            X = new SparseNumericVector();
+            Y = new SparseNumericVector();
 
-        System.out.println(X);
-        System.out.println(Y);
-        System.out.println("X Dot Y = " + projection);
-        assertEquals(projection, actual, 0.0001);
+            Long[] testArray = generateArray(i, X, true);
+            Long[] secondTestArray = generateArray(i, Y, true);
+            double actual = X.dot(Y);
+            computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(secondTestArray)));
+
+            assertEquals(projection, actual, 0.0001);
+        }
     }
 
     @Test
     public void testDot5() {
         // Randomized dot of different size
-        Long[] testArray = generateArray(10, X, true);
-        Long[] secondTestArray = generateArray(15, Y, true);
-        double actual = X.dot(Y);
-        computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(secondTestArray)));
+        for (int i = 1; i < 100; i++) {
+            for (int j = 99; j > 0; j--) {
+                X = new SparseNumericVector();
+                Y = new SparseNumericVector();
 
-        System.out.println(X);
-        System.out.println(Y);
-        System.out.println("X Dot Y = " + projection);
-        assertEquals(projection, actual, 0.0001);
+                Long[] testArray = generateArray(i, X, true);
+                Long[] secondTestArray = generateArray(j, Y, true);
+                computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(secondTestArray)));
+                double actual = X.dot(Y);
+                assertEquals(projection, actual, 0.0001);
+            }
+        }
     }
 
     @Test
     public void testDot6() {
         // X dot Y = Y dot X
-        Long[] testArray = generateArray(25, X, true);
-        Long[] secondTestArray = generateArray(15, Y, true);
-        double actual = X.dot(Y);
-        computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(secondTestArray)));
+        for (int i = 1; i < 100; i++) {
+            for (int j = 99; j > 0; j--) {
+                X = new SparseNumericVector();
+                Y = new SparseNumericVector();
 
-        System.out.println(X);
-        System.out.println(Y);
-        System.out.println("X Dot Y = " + projection);
-        assertEquals(projection, actual, 0.0001);
-        actual = Y.dot(X);
-        assertEquals(projection, actual, 0.0001);
+                Long[] testArray = generateArray(i, X, true);
+                Long[] secondTestArray = generateArray(j, Y, true);
+                double actual = X.dot(Y);
+                computeProjection(new LinkedList<>(Arrays.asList(testArray)), new LinkedList<>(Arrays.asList(secondTestArray)));
+
+                assertEquals(projection, actual, 0.0001);
+                actual = Y.dot(X);
+                assertEquals(projection, actual, 0.0001);
+            }
+        }
     }
 }

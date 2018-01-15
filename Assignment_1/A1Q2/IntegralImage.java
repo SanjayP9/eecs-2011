@@ -22,12 +22,30 @@ public class IntegralImage {
      */
     public IntegralImage(int[][] image) throws InvalidImageException {
         //implement this method.
-        int temp = image[0].length;
+        int temp = 0;
+        int[][] original = image;
+
         for (int i = 0; i < image.length; i++) {
-            if (image[i].length != temp) {
-                throw new InvalidImageException();
+            for (int j = 0; j < image[0].length; j++)
+            {
+                if (image[j].length!=image[0].length)
+                {
+                    throw new InvalidImageException();
+                }
+                if (i!=0)
+                {
+                    temp +=image[i-1][j];
+                }
+                if (j!=0)
+                {
+                    temp+= image[i][j-1];
+                }
             }
+            temp = 0;
         }
+
+        System.out.println(original);
+        System.out.println(image.toString());
 
         this.integralImage = image;
         this.imageHeight = image.length;
@@ -52,22 +70,22 @@ public class IntegralImage {
      */
     public double meanSubImage(int top, int bottom, int left, int right) throws BoundaryViolationException, NullSubImageException {
         //implement this method
+        return 0.0d;
+    }
 
-        if (top > bottom || left > right) {
-            throw new NullSubImageException();
-        } else if (top < 0 || left < 0 || bottom > this.imageHeight || right > this.imageWidth) {
-            throw new BoundaryViolationException();
+    public static void main(String[] args) {
+        int[][]testArray = {
+                {1,2,3},
+                {4,5,6},
+                {7,8,9}
+        };
+
+        try
+        {
+            IntegralImage test = new IntegralImage(testArray);
         }
-
-        double total = 0, count = 0;
-
-        for (int i = top; i <= bottom; i++) {
-            for (int j = left; j <= right; j++) {
-                total += this.integralImage[i][j] * 1.0d;
-                count += 1.0d;
-            }
+        catch(InvalidImageException e)
+        {
         }
-
-        return (total / count);
     }
 }
