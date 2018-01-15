@@ -23,7 +23,7 @@ public class testSparseNumericVector {
         Y.add(new SparseNumericElement(15, 1));
         X.remove((long) 150);
 
-        //projection = X.dot(Y);
+        projection = X.dot(Y);
 
         System.out.println("The inner product of");
         System.out.print(X.toString());
@@ -31,7 +31,7 @@ public class testSparseNumericVector {
         System.out.print(Y.toString());
         System.out.println("is ");
 
-       //System.out.printf("%.5f\n\n",projection); //answer should be 3*1 + 3.1415*1 = 6.1415
+       System.out.printf("%.5f\n\n",projection); //answer should be 3*1 + 3.1415*1 = 6.1415
     }
 
 }

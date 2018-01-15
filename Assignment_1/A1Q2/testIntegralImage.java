@@ -2,13 +2,14 @@ package A1Q2;
 
 /**
  * Tests the IntegralImage class.
+ *
  * @author jameselder
  */
 public class testIntegralImage {
 
     public static void main(String[] args) {
         int[][] image1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int top,bottom,left,right;
+        int top, bottom, left, right;
         double mean;
 
         IntegralImage integralImage1;

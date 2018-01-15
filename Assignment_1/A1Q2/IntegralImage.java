@@ -59,8 +59,7 @@ public class IntegralImage {
             throw new BoundaryViolationException();
         }
 
-        double total = 0;
-        double count = 0;
+        double total = 0, count = 0;
 
         for (int i = top; i <= bottom; i++) {
             for (int j = left; j <= right; j++) {
@@ -70,6 +69,5 @@ public class IntegralImage {
         }
 
         return (total / count);
-
     }
 }
