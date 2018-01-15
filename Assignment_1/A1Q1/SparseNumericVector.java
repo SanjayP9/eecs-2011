@@ -80,10 +80,12 @@ public class SparseNumericVector implements Iterable {
             } else if (e.getIndex() < this.head.getElement().getIndex()) {
                 this.head = new SparseNumericNode(e, this.head);
                 this.size++;
+                return;
             } else if (e.getIndex() > this.tail.getElement().getIndex()) {
                 this.tail.setNext(new SparseNumericNode(this.tail.getElement(), new SparseNumericNode(e, null)));
                 this.tail = this.tail.getNext();
                 this.size++;
+                return;
             }
 
             SparseNumericNode temp = this.head;
@@ -174,16 +176,24 @@ public class SparseNumericVector implements Iterable {
         //this return statement is here to satisfy the compiler - replace it with your code.
         double result = 0;
 
-        SparseNumericNode temp = this.head;
-        SparseNumericNode temp2 = Y.getFirst();
-        boolean checkOne = (temp.getElement().getIndex() < temp2.getElement().getIndex());
-        long currVal = (checkOne)?(temp.getElement().getIndex()) : (temp2.getElement().getIndex());
+        SparseNumericIterator xIterate = new SparseNumericIterator(this);
+        SparseNumericIterator yIterate = new SparseNumericIterator(Y);
 
-        while (temp.getNext() == null || temp2.getNext() == null)
-        {
 
+        //boolean checkOne = (xIterate.position.getElement().getIndex() < yIterate.position.getElement().getIndex());
+        //long currVal = (checkOne) ? (xIterate.position.getElement().getIndex()) : (yIterate.position.getElement().getIndex());
+
+        while (xIterate.hasNext() && yIterate.hasNext()) {
+            if (xIterate.position.getElement().getIndex() == yIterate.position.getElement().getIndex()) {
+                result += xIterate.position.getElement().getValue() * yIterate.position.getElement().getValue();
+                xIterate.next();
+                yIterate.next();
+            } else if (xIterate.position.getElement().getIndex() > yIterate.position.getElement().getIndex()) {
+                yIterate.next();
+            } else {
+                xIterate.next();
+            }
         }
-
 
         return result;
     }
