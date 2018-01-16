@@ -1,5 +1,7 @@
 package A1Q2;
 
+import java.util.Arrays;
+
 /**
  * Represents an integer integral image, which allows the user to query the mean
  * value of an arbitrary rectangular subimage in O(1) time.  Uses O(n) memory,
@@ -22,34 +24,30 @@ public class IntegralImage {
      */
     public IntegralImage(int[][] image) throws InvalidImageException {
         //implement this method.
-        int temp = 0;
-        int[][] original = image;
+        int[][] newArray = new int[image.length][image[0].length];
 
         for (int i = 0; i < image.length; i++) {
-            for (int j = 0; j < image[0].length; j++)
-            {
-                if (image[j].length!=image[0].length)
-                {
+            for (int j = 0; j < image[0].length; j++) {
+                if (image[j].length != image[0].length) {
                     throw new InvalidImageException();
                 }
-                if (i!=0)
-                {
-                    temp +=image[i-1][j];
+
+                if (i > 0) {
+                    newArray[i][j] += newArray[i - 1][j];
                 }
-                if (j!=0)
-                {
-                    temp+= image[i][j-1];
+                if (j > 0) {
+                    newArray[i][j] += newArray[i][j - 1];
                 }
+                if (j > 0 && i > 0) {
+                    newArray[i][j] -= newArray[i - 1][j - 1];
+                }
+                newArray[i][j] += image[i][j];
             }
-            temp = 0;
         }
-
-        System.out.println(original);
-        System.out.println(image.toString());
-
-        this.integralImage = image;
-        this.imageHeight = image.length;
-        this.imageWidth = temp;
+        
+        this.integralImage = newArray;
+        this.imageHeight = newArray.length;
+        this.imageWidth = newArray[0].length;
     }
 
     /**
@@ -70,22 +68,25 @@ public class IntegralImage {
      */
     public double meanSubImage(int top, int bottom, int left, int right) throws BoundaryViolationException, NullSubImageException {
         //implement this method
-        return 0.0d;
-    }
-
-    public static void main(String[] args) {
-        int[][]testArray = {
-                {1,2,3},
-                {4,5,6},
-                {7,8,9}
-        };
-
-        try
-        {
-            IntegralImage test = new IntegralImage(testArray);
+        if (top > bottom || left > right) {
+            throw new NullSubImageException();
         }
-        catch(InvalidImageException e)
-        {
+        if (top < 0 || bottom > imageHeight || left < 0 || right > imageWidth) {
+            throw new BoundaryViolationException();
         }
+
+        int result = this.integralImage[bottom][right];
+        if (left - 1 >= 0) {
+            result -= this.integralImage[bottom][left - 1];
+        }
+        if (top - 1 >= 0) {
+            result -= this.integralImage[top - 1][right];
+        }
+        if (left >= 1 && right >= 1) {
+            result += this.integralImage[top - 1][left - 1];
+        }
+
+        return result / ((right - left) * (bottom - top + 1));
+
     }
 }
