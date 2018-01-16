@@ -13,18 +13,48 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IntegralImage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/A1Q2/IntegralImage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="IntegralImage.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/A1Q2/IntegralImage.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="962">
+                  <caret line="79" column="66" lean-forward="true" selection-start-line="79" selection-start-column="66" selection-end-line="79" selection-end-column="66" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="testIntegralImage.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/A1Q2/testIntegralImage.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="555">
+                  <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="OtherIntegralTest.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/A1Q2/OtherIntegralTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="138">
+                  <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -53,6 +83,7 @@
         <option value="$PROJECT_DIR$/A1Q1/testSparseNumericVector.java" />
         <option value="$PROJECT_DIR$/A1Q1/SparseNumericVectorTest.java" />
         <option value="$PROJECT_DIR$/A1Q1/SparseNumericVector.java" />
+        <option value="$PROJECT_DIR$/A1Q2/OtherIntegralTest.java" />
         <option value="$PROJECT_DIR$/A1Q2/IntegralImage.java" />
       </list>
     </option>
@@ -66,8 +97,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="2576" />
+    <option name="height" value="1416" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -97,13 +128,18 @@
               <item name="Assignment_1" type="462c0819:PsiDirectoryNode" />
               <item name="A1Q2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Assignment_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Assignment_1" type="462c0819:PsiDirectoryNode" />
+              <item name="A1Q3" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -133,7 +169,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.IntegralImage">
+  <component name="RunManager" selected="JUnit.OtherIntegralTest.meanTest5">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -173,33 +209,14 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="testMaxStack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="testIntegralImage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="A1Q3.*" />
+          <option name="PATTERN" value="A1Q2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="A1Q3.testMaxStack" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Assignment_1" />
-      <envs />
-    </configuration>
-    <configuration name="testSparseNumericVector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="A1Q1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="A1Q1.testSparseNumericVector" />
+      <option name="MAIN_CLASS_NAME" value="A1Q2.testIntegralImage" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -218,6 +235,31 @@
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
       <setting name="depsClasspath" value="false" />
+    </configuration>
+    <configuration name="OtherIntegralTest.meanTest5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="A1Q2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Assignment_1" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="A1Q2" />
+      <option name="MAIN_CLASS_NAME" value="A1Q2.OtherIntegralTest" />
+      <option name="METHOD_NAME" value="meanTest5" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration name="SparseNumericVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -613,19 +655,19 @@
       <envs />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.testSparseNumericVector" />
-      <item index="1" class="java.lang.String" itemvalue="Application.testMaxStack" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest.testAdd5" />
-      <item index="4" class="java.lang.String" itemvalue="Application.IntegralImage" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest.testAdd5" />
+      <item index="2" class="java.lang.String" itemvalue="Application.IntegralImage" />
+      <item index="3" class="java.lang.String" itemvalue="Application.testIntegralImage" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.OtherIntegralTest.meanTest5" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.IntegralImage" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest.testAdd5" />
-        <item index="3" class="java.lang.String" itemvalue="Application.testSparseNumericVector" />
-        <item index="4" class="java.lang.String" itemvalue="Application.testMaxStack" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.OtherIntegralTest.meanTest5" />
+        <item index="1" class="java.lang.String" itemvalue="Application.testIntegralImage" />
+        <item index="2" class="java.lang.String" itemvalue="Application.IntegralImage" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.SparseNumericVectorTest.testAdd5" />
       </list>
     </recent_temporary>
   </component>
@@ -648,44 +690,46 @@
       <workItem from="1515974326413" duration="9182000" />
       <workItem from="1516042275657" duration="9060000" />
       <workItem from="1516059986032" duration="5444000" />
-      <workItem from="1516074235085" duration="967000" />
+      <workItem from="1516074235085" duration="1006000" />
+      <workItem from="1516076492883" duration="36000" />
+      <workItem from="1516077496579" duration="1698000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 15h 55m 45s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 00m 12s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 15h 56m 50s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 00m 16s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 15h 57m 06s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 00m 19s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 15h 57m 18s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 00m 28s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 16h 00m 02s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 01m 20s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 16h 00m 05s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 01m 30s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 16h 00m 23s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 02m 12s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 16h 02m 47s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 03m 23s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 16h 03m 02s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 04m 06s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SparseNumericVectorTest - 2018.01.15 at 16h 03m 32s.xml">
-      <configuration name="SparseNumericVectorTest" configurationId="JUnit" />
+    <history-entry file="OtherIntegralTest_meanTest5 - 2018.01.16 at 00h 04m 31s.xml">
+      <configuration name="OtherIntegralTest.meanTest5" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44290000" />
+    <option name="totallyTimeSpent" value="46063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -699,19 +743,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3546875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11128776" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.112877585" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37734374" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31171876" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -730,7 +774,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -739,6 +783,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/A1Q2/IntegralImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/A1Q2/IntegralImage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -881,14 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A1Q2/testIntegralImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="54" lean-forward="false" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/A1Q2/InvalidImageException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -907,13 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="1" lean-forward="false" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A1Q3/testMaxStack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -963,14 +1000,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A1Q3/testMaxStack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A1Q2/testIntegralImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/A1Q2/IntegralImage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+        <state relative-caret-position="962">
+          <caret line="79" column="66" lean-forward="true" selection-start-line="79" selection-start-column="66" selection-end-line="79" selection-end-column="66" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A1Q2/OtherIntegralTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

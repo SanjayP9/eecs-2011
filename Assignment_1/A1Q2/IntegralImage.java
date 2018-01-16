@@ -28,7 +28,7 @@ public class IntegralImage {
 
         for (int i = 0; i < image.length; i++) {
             for (int j = 0; j < image[0].length; j++) {
-                if (image[j].length != image[0].length) {
+                if (image[i].length != image[0].length) {
                     throw new InvalidImageException();
                 }
 
@@ -44,7 +44,7 @@ public class IntegralImage {
                 newArray[i][j] += image[i][j];
             }
         }
-        
+
         this.integralImage = newArray;
         this.imageHeight = newArray.length;
         this.imageWidth = newArray[0].length;
@@ -75,18 +75,18 @@ public class IntegralImage {
             throw new BoundaryViolationException();
         }
 
-        int result = this.integralImage[bottom][right];
+        double result = this.integralImage[bottom][right] * 1.0d;
         if (left - 1 >= 0) {
-            result -= this.integralImage[bottom][left - 1];
+            result -= this.integralImage[bottom][left - 1] * 1.0d;
         }
         if (top - 1 >= 0) {
-            result -= this.integralImage[top - 1][right];
+            result -= this.integralImage[top - 1][right] * 1.0d;
         }
         if (left >= 1 && right >= 1) {
-            result += this.integralImage[top - 1][left - 1];
+            result += this.integralImage[top - 1][left - 1] * 1.0d;
         }
+        double count = 1.0d * ((right - left + 1) * (bottom - top + 1));
 
-        return result / ((right - left) * (bottom - top + 1));
-
+        return (result / count);
     }
 }
