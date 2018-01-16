@@ -13,7 +13,6 @@ public class OtherIntegralTest {
 
     /**
      * Generates a 2d array
-     *
      * @param col
      * @param row
      */
@@ -30,26 +29,31 @@ public class OtherIntegralTest {
     }
 
     public double calculateMean(int[][] array, int top, int bottom, int left, int right) {
-        double sum = 0, count = 0;
+        double sum = 0;
 
         for (int i = top; i <= bottom; i++) {
             for (int j = left; j <= right; j++) {
-                sum += array[i][j] * 1.0d;
-                count += 1.0d;
+                sum += array[i][j];
             }
         }
 
-        return (sum / count);
+        return sum / ((bottom - top + 1) * (right - left + 1)) * 1.0d;
     }
 
     @Test
     public void boundsTest1() {
         // Jagged array
-        int[][] jagged = new int[2][2];
-        jagged[0] = new int[5];
-        jagged[1] = new int[1];
+        for (int i = 0; i < 100; i ++) {
+            int[][] jagged = generateArray(
+                    ThreadLocalRandom.current().nextInt(2, 50),
+                    ThreadLocalRandom.current().nextInt(2, 50)
+            );
 
-        assertThrows(InvalidImageException.class, () -> new IntegralImage(jagged));
+            int jagger = ThreadLocalRandom.current().nextInt(0, jagged.length);
+            jagged[jagger] = new int[100];
+
+            assertThrows(InvalidImageException.class, () -> new IntegralImage(jagged));
+        }
     }
 
 
@@ -67,7 +71,8 @@ public class OtherIntegralTest {
                     () -> image.meanSubImage(0, 9, -1, 9));
             assertThrows(BoundaryViolationException.class,
                     () -> image.meanSubImage(0, 9, 0, array[0].length + 1));
-        } catch (InvalidImageException e) {
+        }
+        catch (InvalidImageException e) {
             fail("Failed to generate array");
         }
     }
@@ -90,7 +95,29 @@ public class OtherIntegralTest {
     }
 
     @Test
-    public void meanTest5() {
+    public void meanTest3() {
+        // Given test case
+        int[][] array = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+
+        double mean = 0;
+
+        IntegralImage image;
+        try {
+            image = new IntegralImage(array);
+            mean = image.meanSubImage(1, 2, 1, 2); //should be 7.0
+            double expected = calculateMean(array, 1, 2, 1, 2);
+            assertEquals(expected, mean, 0.0001d);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void meanTest4() {
         for (int i = 0; i < 100; i++) {
             int[][] array = generateArray(
                     ThreadLocalRandom.current().nextInt(1, 50),
@@ -99,31 +126,29 @@ public class OtherIntegralTest {
 
             IntegralImage image;
             try {
-                int top = ThreadLocalRandom.current().nextInt(array.length);
-                int left = ThreadLocalRandom.current().nextInt(array[0].length);
-                int bottom = ThreadLocalRandom.current().nextInt(array.length);
-                int right = ThreadLocalRandom.current().nextInt(array[0].length);
+                int top = ThreadLocalRandom.current().nextInt(0, array.length);
+                int left = ThreadLocalRandom.current().nextInt(0, array[0].length);
+                int bottom = ThreadLocalRandom.current().nextInt(0,array.length);
+                int right = ThreadLocalRandom.current().nextInt(0, array[0].length);
                 while (bottom < top) {
-                    bottom = ThreadLocalRandom.current().nextInt(array.length);
+                    bottom = ThreadLocalRandom.current().nextInt(0, array.length);
                 }
 
                 while (right < left) {
-                    right = ThreadLocalRandom.current().nextInt(array[0].length);
+                    right = ThreadLocalRandom.current().nextInt(0, array[0].length);
                 }
 
-                System.out.println("i = " + i + " row nums: " + array.length + " | " + "col nums: " + array[0].length);
-                System.out.println("top " + top + " | " + "bottom " + bottom + " : " + "left " + left + " | " + "right " + right);
-                System.out.println();
-
                 image = new IntegralImage(array);
+                double expected = calculateMean(array, top, bottom, left, right);
                 double mean = 0;
                 try {
                     mean = image.meanSubImage(top, bottom, left, right);
                 } catch (Exception e) {
-                    fail("This ain't supposed to happen: " + e.toString() + "\ntop " + top + "\nbottom " + bottom + "\nleft " + left + "\nright " + right + "\n\nheight " + array.length + "\nwidth " + array[0].length);
+                    fail("Failed to get mean with bounds " +  top + ", " + bottom +
+                            ", " + left + ", " + right + "\n" + "Of array size " + array.length + ", " +
+                            array[0].length);
                 }
 
-                double expected = calculateMean(array, top, bottom, left, right);
                 assertEquals(expected, mean, 0.000001d);
             } catch (InvalidImageException e) {
                 fail("Failed to generate array");

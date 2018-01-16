@@ -89,4 +89,33 @@ public class IntegralImage {
 
         return (result / count);
     }
+
+    public static void main(String[] args) {
+        IntegralImage integralImage;
+
+        int[][] testArray = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+
+
+        try {
+            integralImage = new IntegralImage(testArray);
+
+            for (int i = 0; i <= testArray.length; i++) {
+                for (int j = 0; j <= testArray[0].length; j++) {
+                    try {
+                        System.out.println(integralImage.meanSubImage());
+                    } catch (Exception e) {
+                        System.out.println(e.toString());
+                    }
+                }
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
 }
