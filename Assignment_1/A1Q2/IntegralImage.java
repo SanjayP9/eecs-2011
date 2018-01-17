@@ -76,13 +76,13 @@ public class IntegralImage {
         }
 
         double result = this.integralImage[bottom][right] * 1.0d;
-        if (left - 1 >= 0) {
+        if (left > 0) {
             result -= this.integralImage[bottom][left - 1] * 1.0d;
         }
-        if (top - 1 >= 0) {
+        if (top > 0) {
             result -= this.integralImage[top - 1][right] * 1.0d;
         }
-        if (left >= 1 && right >= 1) {
+        if (left >= 1 && top >= 1) {
             result += this.integralImage[top - 1][left - 1] * 1.0d;
         }
         double count = 1.0d * ((right - left + 1) * (bottom - top + 1));
@@ -106,7 +106,6 @@ public class IntegralImage {
             for (int i = 0; i <= testArray.length; i++) {
                 for (int j = 0; j <= testArray[0].length; j++) {
                     try {
-                        System.out.println(integralImage.meanSubImage());
                     } catch (Exception e) {
                         System.out.println(e.toString());
                     }
