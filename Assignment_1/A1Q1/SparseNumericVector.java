@@ -65,14 +65,13 @@ public class SparseNumericVector implements Iterable {
                 this.head = new SparseNumericNode(e, this.head);
                 this.size++;
             } else if (e.getIndex() > this.tail.getElement().getIndex()) {
-                this.tail.setNext(new SparseNumericNode(e,null));
+                this.tail.setNext(new SparseNumericNode(e, null));
                 this.tail = this.tail.getNext();
                 this.size++;
 
             } else {
 
                 SparseNumericNode temp = this.head;
-                //SparseNumericIterator iterator = new SparseNumericIterator(this);
 
                 while (temp.getNext() != null) {
                     if (temp.getElement().getIndex() == e.getIndex()) {
@@ -84,18 +83,6 @@ public class SparseNumericVector implements Iterable {
                     }
                     temp = temp.getNext();
                 }
-
-                /*while (iterator.hasNext()) {
-                    if (iterator.position.getElement().getIndex() == e.getIndex()) {
-                        throw new UnsupportedOperationException();
-                    } else if (iterator.position.getElement().getIndex() > e.getIndex()) {
-                        temp.setNext(new SparseNumericNode(e, iterator.position));
-                        this.size++;
-                        return;
-                    }
-                    temp = iterator.position;
-                    iterator.next();
-                }*/
             }
         }
     }
@@ -151,20 +138,6 @@ public class SparseNumericVector implements Iterable {
                 previous = temp;
                 temp = temp.getNext();
             }
-
-
-            /*SparseNumericIterator iterator = new SparseNumericIterator(this);
-
-            while (iterator.hasNext()) {
-                if (iterator.position.getElement().getIndex() == index) {
-                    temp.setNext(temp.getNext().getNext());
-                    this.size--;
-                    return true;
-                }
-
-                temp = iterator.position;
-                iterator.next();
-            }*/
         }
         return false;
     }
@@ -184,17 +157,12 @@ public class SparseNumericVector implements Iterable {
         //this return statement is here to satisfy the compiler - replace it with your code.
         double result = 0;
 
-        if (this.size == 0)
-        {
+        if (this.size == 0) {
             return 0.0d;
         }
 
         SparseNumericIterator xIterate = new SparseNumericIterator(this);
         SparseNumericIterator yIterate = new SparseNumericIterator(Y);
-
-
-        //boolean checkOne = (xIterate.position.getElement().getIndex() < yIterate.position.getElement().getIndex());
-        //long currVal = (checkOne) ? (xIterate.position.getElement().getIndex()) : (yIterate.position.getElement().getIndex());
 
         while (xIterate.hasNext() && yIterate.hasNext()) {
             if (xIterate.position.getElement().getIndex() == yIterate.position.getElement().getIndex()) {
