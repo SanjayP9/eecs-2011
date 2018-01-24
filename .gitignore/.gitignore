@@ -126,6 +126,6 @@ fabric.properties
 workspace.xml
 tasks.xml
 .idea/
-Assignment_1/A1Q1/out/
+Assignment_1/A1Q1/out/*.class
 Assignment_1/.idea
 *.class
