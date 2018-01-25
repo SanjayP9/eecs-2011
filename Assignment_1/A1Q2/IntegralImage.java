@@ -24,13 +24,17 @@ public class IntegralImage {
      */
     public IntegralImage(int[][] image) throws InvalidImageException {
         //implement this method.
+        if (image.length == 0 || image[0].length == 0) {
+            throw new InvalidImageException();
+        }
+
         int[][] newArray = new int[image.length][image[0].length];
 
         for (int i = 0; i < image.length; i++) {
+            if (image[i].length != image[0].length) {
+                throw new InvalidImageException();
+            }
             for (int j = 0; j < image[0].length; j++) {
-                if (image[i].length != image[0].length) {
-                    throw new InvalidImageException();
-                }
 
                 if (i > 0) {
                     newArray[i][j] += newArray[i - 1][j];
@@ -71,7 +75,7 @@ public class IntegralImage {
         if (top > bottom || left > right) {
             throw new NullSubImageException();
         }
-        if (top < 0 || bottom > imageHeight || left < 0 || right > imageWidth) {
+        if (left < 0 || right > imageWidth || top < 0 || bottom > imageHeight) {
             throw new BoundaryViolationException();
         }
 

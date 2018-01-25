@@ -1,3 +1,10 @@
+workspace.xml
+tasks.xml
+.idea/
+Assignment_1/A1Q1/out/*.class
+Assignment_1/.idea
+*.class
+
 .DS_Store
 .svn
 # Compiled class file
