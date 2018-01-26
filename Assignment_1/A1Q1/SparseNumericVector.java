@@ -175,7 +175,6 @@ public class SparseNumericVector implements Iterable {
                 xIterate.next();
             }
         }
-
         return result;
     }
 
