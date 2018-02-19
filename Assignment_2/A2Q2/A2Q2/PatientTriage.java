@@ -4,10 +4,11 @@ import java.util.*;
 
 /**
  * Triages patients in Emergency Ward according to medical priority and wait time.
- * Priorities are positive integers;  the highest priority is 1. 
- * Normally patients are seen in priority order, however, if there are patients 
- * who have waited longer than a specified time (maxWait), they are seen first, 
- * in order of their arrival.  
+ * Priorities are positive integers;  the highest priority is 1.
+ * Normally patients are seen in priority order, however, if there are patients
+ * who have waited longer than a specified time (maxWait), they are seen first,
+ * in order of their arrival.
+ *
  * @author elder
  */
 public class PatientTriage {
@@ -31,8 +32,9 @@ public class PatientTriage {
         setMaxWait(time);
     }
 
-   /**
-     * Adds patient to queues.  
+    /**
+     * Adds patient to queues.
+     *
      * @param patient to add.
      * @throws NullPointerException if given null patient
      */
@@ -44,19 +46,37 @@ public class PatientTriage {
         timeHeap.offer(patient); //add to arrival time queue
     }
 
-  /**
-     * Removes next patient in queue.  
+    /**
+     * Removes next patient in queue.
+     *
      * @param currentTime used to determine whether to use priority or arrival time
      * @return Next patient to attend to
-     * @throws NullPointerException if given null time
-     * @throws EmptyQueueException if queue is empty
+     * @throws NullPointerException       if given null time
+     * @throws EmptyQueueException        if queue is empty
      * @throws BoundaryViolationException under some internal error conditions
      */
     public Patient remove(Time currentTime) throws NullPointerException, EmptyQueueException, BoundaryViolationException {
-    //implement this method
+        //implement this method
+        if (currentTime == null) {
+            throw new NullPointerException();
+        } else if (priorityHeap.isEmpty() || timeHeap.isEmpty()) {
+            throw new EmptyQueueException();
+        }
+        int patientTime = timeHeap.peek().getArrivalTime().getHour() * 60 + timeHeap.peek().getArrivalTime().getMinute();
+        int currTime = currentTime.getHour() * 60 + currentTime.getMinute();
+        Patient removed;
+
+        if ((patientTime - currTime) > (maxWait.getHour() * 60 + maxWait.getMinute())) {
+            removed = timeHeap.poll();
+            priorityHeap.remove(removed.getPriorityPos());
+        } else {
+            removed = priorityHeap.poll();
+            timeHeap.remove(removed.getPriorityPos());
+        }
+        return removed;
     }
 
-   /**
+    /**
      * @return maximum wait time
      */
     public Time getMaxWait() {

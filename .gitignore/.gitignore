@@ -1,6 +1,7 @@
+*/.idea/*
 .idea
 .idea/*
-Assignment_1/.idea
-Assignment_1/.idea/*
-Assignment_1/A1Q1/out
-Assignment_1/A1Q1/out/*
+Assignment_*/.idea
+Assignment_*/.idea/*
+Assignment_*/A1Q1/out
+Assignment_*/A1Q1/out/*
