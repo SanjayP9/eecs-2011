@@ -44,6 +44,7 @@ public class APQ<E> {
             throw new NullPointerException();
         } else {
             this.apq.add(e);
+            locator.set(e, this.apq.size() - 1);
             upheap(this.apq.size() - 1);
         }
     }
@@ -73,7 +74,6 @@ public class APQ<E> {
      */
     public E poll() {
         //implement this method
-
         if (isEmpty()) {
             return null;
         } else {
