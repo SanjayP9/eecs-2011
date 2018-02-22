@@ -44,8 +44,8 @@ public class APQ<E> {
             throw new NullPointerException();
         } else {
             this.apq.add(e);
-            locator.set(e, this.apq.size() - 1);
-            upheap(this.apq.size() - 1);
+            locator.set(e, size());
+            upheap(size());
         }
     }
 
@@ -78,8 +78,8 @@ public class APQ<E> {
             return null;
         } else {
             E result = this.apq.get(1);
-            swap(1, this.apq.size() - 1);
-            this.apq.remove(this.apq.size() - 1);
+            swap(1, size());
+            this.apq.remove(size());
             downheap(1);
             return result;
         }
@@ -133,20 +133,20 @@ public class APQ<E> {
         int leftChild = getLeftChildIndex(pos);
         int rightChild = getRightChildIndex(pos);
 
-        if (leftChild >= this.apq.size() || leftChild <= 0) {
+        if (leftChild > size() || leftChild <= 0) {
             return;
-        } else if (rightChild >= this.apq.size() || rightChild <= 0) {
+        } else if (rightChild > size() || rightChild <= 0) {
             if (comparator.compare(this.apq.get(leftChild), this.apq.get(pos)) < 0) {
                 swap(leftChild, pos);
                 downheap(leftChild);
             }
         } else { // If both child's are available
             // if left child is smaller then store in lesserChild else store right child
-            int lesserChildIndex = (comparator.compare(this.apq.get(leftChild), this.apq.get(rightChild)) < 0) ? (leftChild) : (rightChild);
+            int lesserChildIndex = (comparator.compare(this.apq.get(leftChild), this.apq.get(rightChild)) <= 0) ? (leftChild) : (rightChild);
 
             if (comparator.compare(this.apq.get(lesserChildIndex), this.apq.get(pos)) < 0) {
                 swap(pos, lesserChildIndex);
-                downheap(pos);
+                downheap(lesserChildIndex);
             }
         }
     }
@@ -169,14 +169,14 @@ public class APQ<E> {
     }
 
     private int getParentIndex(int currNode) {
-        return (int) ((currNode - 1) / 2);
+        return ((currNode) / 2);
     }
 
     private int getLeftChildIndex(int currNode) {
-        return (int) (2 * currNode + 1);
+        return (2 * currNode);
     }
 
     private int getRightChildIndex(int currNode) {
-        return (int) (2 * currNode + 2);
+        return (2 * currNode + 1);
     }
 }

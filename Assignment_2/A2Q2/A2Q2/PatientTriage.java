@@ -66,7 +66,7 @@ public class PatientTriage {
         int currTime = currentTime.getHour() * 60 + currentTime.getMinute();
         Patient removed;
 
-        if ((patientTime - currTime) > (maxWait.getHour() * 60 + maxWait.getMinute())) {
+        if ((patientTime - currTime) >= (maxWait.getHour() * 60 + maxWait.getMinute())) {
             removed = timeHeap.poll();
             priorityHeap.remove(removed.getPriorityPos());
         } else {
