@@ -59,21 +59,35 @@ public class PatientTriage {
         //implement this method
         if (currentTime == null) {
             throw new NullPointerException();
-        } else if (priorityHeap.isEmpty() || timeHeap.isEmpty()) {
+        }
+        if (priorityHeap.isEmpty() || timeHeap.isEmpty()) {
             throw new EmptyQueueException();
         }
-        int patientTime = timeHeap.peek().getArrivalTime().getHour() * 60 + timeHeap.peek().getArrivalTime().getMinute();
-        int currTime = currentTime.getHour() * 60 + currentTime.getMinute();
-        Patient removed;
 
-        if ((patientTime - currTime) >= (maxWait.getHour() * 60 + maxWait.getMinute())) {
-            removed = timeHeap.poll();
-            priorityHeap.remove(removed.getPriorityPos());
-        } else {
-            removed = priorityHeap.poll();
-            timeHeap.remove(removed.getPriorityPos());
+        TimeComparator timeCompare = new TimeComparator();
+        Time timePassed;
+
+        if (timeCompare.compare(timeHeap.peek().getArrivalTime(), currentTime) <= 0) {
+            timePassed = timeHeap.peek().getArrivalTime().elapsed(currentTime);
+
+            if (timeCompare.compare(timePassed, maxWait) >= 0) {
+                return removeFromTimeHeap();
+            }
         }
-        return removed;
+        return removeFromPriorityHeap();
+    }
+
+
+    private Patient removeFromTimeHeap() throws BoundaryViolationException {
+        Patient result = timeHeap.poll();
+        priorityHeap.remove(result.getPriorityPos());
+        return result;
+    }
+
+    private Patient removeFromPriorityHeap() throws BoundaryViolationException {
+        Patient result = priorityHeap.poll();
+        timeHeap.remove(result.getTimePos());
+        return result;
     }
 
     /**

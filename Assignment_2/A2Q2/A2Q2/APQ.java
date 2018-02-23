@@ -57,16 +57,29 @@ public class APQ<E> {
      */
     public void remove(int pos) throws BoundaryViolationException {
         //implement this method
-        if (pos <= 0 || pos >= this.apq.size()) {
+        if (pos < 0 || size() < pos) {
+            // Out of bounds pos throws exception
             throw new BoundaryViolationException();
-        } else if (pos == 1) {
+        }
+        if (pos == 1) {
+            // If its the first one need to remove the head which is the same as poll
             poll();
         } else if (pos == this.size()) {
+            // If its the last one just remove it
             this.apq.remove(pos);
         } else {
-            swap(pos, 1);
-            poll();
+            this.apq.set(pos, this.apq.get(size()));
+            this.apq.remove(size());
+            locator.set(this.apq.get(pos), pos);
+
+            // if the parent is larger than the node at pos then upheap from pos otherwise downheap from there
+            if (comparator.compare(this.apq.get(getParentIndex(pos)), this.apq.get(pos)) > 0) {
+                upheap(pos);
+            } else {
+                downheap(pos);
+            }
         }
+
     }
 
     /**
@@ -91,8 +104,9 @@ public class APQ<E> {
     public E peek() {
         if (isEmpty()) {
             return null;
+        } else {
+            return this.apq.get(1);
         }
-        return apq.get(1);
     }
 
     public boolean isEmpty() {
@@ -113,11 +127,11 @@ public class APQ<E> {
         //implement this method
         int parentIndex = getParentIndex(pos);
 
-        if (parentIndex >= 0 && parentIndex < this.apq.size()) {
+        if (parentIndex >= 1) {
             if (this.apq.get(parentIndex) != null) {
                 if (comparator.compare(this.apq.get(pos), this.apq.get(parentIndex)) < 0) {
                     swap(pos, parentIndex);
-                    upheap(getParentIndex(pos));
+                    upheap(parentIndex);
                 }
             }
         }
@@ -130,19 +144,19 @@ public class APQ<E> {
      */
     private void downheap(int pos) {
         //implement this method
-        int leftChild = getLeftChildIndex(pos);
-        int rightChild = getRightChildIndex(pos);
+        //int leftChild = getLeftChildIndex(pos);
+        //int rightChild = getRightChildIndex(pos);
 
-        if (leftChild > size() || leftChild <= 0) {
+        if (getLeftChildIndex(pos) > size()) {
             return;
-        } else if (rightChild > size() || rightChild <= 0) {
-            if (comparator.compare(this.apq.get(leftChild), this.apq.get(pos)) < 0) {
-                swap(leftChild, pos);
-                downheap(leftChild);
+        } else if (getRightChildIndex(pos) > size()) {
+            if (comparator.compare(this.apq.get(getLeftChildIndex(pos)), this.apq.get(pos)) < 0) {
+                swap(getLeftChildIndex(pos), pos);
+                downheap(getLeftChildIndex(pos));
             }
         } else { // If both child's are available
             // if left child is smaller then store in lesserChild else store right child
-            int lesserChildIndex = (comparator.compare(this.apq.get(leftChild), this.apq.get(rightChild)) <= 0) ? (leftChild) : (rightChild);
+            int lesserChildIndex = (comparator.compare(this.apq.get(getLeftChildIndex(pos)), this.apq.get(getRightChildIndex(pos))) <= 0) ? (getLeftChildIndex(pos)) : (getRightChildIndex(pos));
 
             if (comparator.compare(this.apq.get(lesserChildIndex), this.apq.get(pos)) < 0) {
                 swap(pos, lesserChildIndex);
@@ -177,6 +191,6 @@ public class APQ<E> {
     }
 
     private int getRightChildIndex(int currNode) {
-        return (2 * currNode + 1);
+        return (getLeftChildIndex(currNode) + 1);
     }
 }
