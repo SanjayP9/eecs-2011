@@ -46,6 +46,20 @@ public class PatientTriage {
         timeHeap.offer(patient); //add to arrival time queue
     }
 
+    // Method used to remove a root from the time heap and return the Patient
+    private Patient removeFromTimeHeap() throws BoundaryViolationException {
+        Patient result = timeHeap.poll();
+        priorityHeap.remove(result.getPriorityPos());
+        return result;
+    }
+
+    // Method used to remove a root from the priority heap and return the Patient
+    private Patient removeFromPriorityHeap() throws BoundaryViolationException {
+        Patient result = priorityHeap.poll();
+        timeHeap.remove(result.getTimePos());
+        return result;
+    }
+
     /**
      * Removes next patient in queue.
      *
@@ -67,28 +81,22 @@ public class PatientTriage {
         TimeComparator timeCompare = new TimeComparator();
         Time timePassed;
 
+        // Checks if current time is more than the arrival time to avoid getting a negative elapsed time
+        // Getting a negative elapsed time would throw an exception
         if (timeCompare.compare(timeHeap.peek().getArrivalTime(), currentTime) <= 0) {
             timePassed = timeHeap.peek().getArrivalTime().elapsed(currentTime);
 
+            // Checks if Patient is over wait time
             if (timeCompare.compare(timePassed, maxWait) >= 0) {
                 return removeFromTimeHeap();
             }
         }
+        // If time hasn't exceeded wait time just go by the priority queue
         return removeFromPriorityHeap();
     }
 
 
-    private Patient removeFromTimeHeap() throws BoundaryViolationException {
-        Patient result = timeHeap.poll();
-        priorityHeap.remove(result.getPriorityPos());
-        return result;
-    }
 
-    private Patient removeFromPriorityHeap() throws BoundaryViolationException {
-        Patient result = priorityHeap.poll();
-        timeHeap.remove(result.getTimePos());
-        return result;
-    }
 
     /**
      * @return maximum wait time
