@@ -47,16 +47,19 @@ public class BSTRangeTest {
 
         iter = list.iterator();
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        /*System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         while(iter.hasNext())
         {
-           System.out.println(iter.next().getValue());
+            System.out.println(iter.next().getValue());
         }
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");*/
 
         if (list.size() != firstResult.length) {
             fail("Expected " + firstResult.length + " entries, got: " + list.size());
         }
+
+
 
         for (int entry : firstResult) {
             Entry<Integer, Integer> e = iter.next();
@@ -106,6 +109,13 @@ public class BSTRangeTest {
         if (list.size() != secondResult.length) {
             fail("Expected " + secondResult.length + " entries, got: " + list.size());
         }
+
+        /*System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        while(iter.hasNext())
+        {
+            System.out.println(iter.next().getValue());
+        }
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");*/
 
         for (int entry : secondResult) {
             Entry<Integer, Integer> e = iter.next();
