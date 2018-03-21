@@ -6,16 +6,16 @@
 package A3Q2;
 
 /**
- *
  * @author elder
  */
 public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
 
     int q; //Prime number of secondary hash
-    
+
     // provide same constructors as base class
+
     /**
-     * Creates a hash table with capacity 17,  prime factor 109345121 and 
+     * Creates a hash table with capacity 17,  prime factor 109345121 and
      * secondary prime factor q = 13.
      */
     public DoubleProbeHashMap() {
@@ -24,7 +24,7 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
     }
 
     /**
-     * Creates a hash table with the given capacity cap, prime factor 109345121 
+     * Creates a hash table with the given capacity cap, prime factor 109345121
      * and secondary prime factor q equal to the largest prime less than cap.
      * Cap must be at least 3 otherwise an Exception is thrown.
      */
@@ -48,14 +48,16 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
         }
         q = selectSecondaryHashPrime(cap);
     }
-    
-  /**
-     * Updates the size of the hash table to be at least newCap and rehashes all 
+
+    /**
+     * Updates the size of the hash table to be at least newCap and rehashes all
      * entries.  Must also update secondary prime factor q.
      */
     protected void resize(int newCap) {
         //Implement this method.  Note that you can make use of the resize 
-        //method of probleHashMap with a super.resize call.
+        //method of probeHashMap with a super.resize call.
+
+        q = selectSecondaryHashPrime(newCap);
         super.resize(newCap);
     }
 
@@ -63,12 +65,12 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
      * Searches for an entry with key equal to k (which is known to have primary
      * hash value h1), returning the index at which it was found, or returning
      * -(a+1) where a is the index of the first empty or available slot that can
-     * be used to store a new such entry.  Uses secondary hashing function 
-     * h’(k) = q - k mod q, where the secondary prime factor q is the smallest 
+     * be used to store a new such entry.  Uses secondary hashing function
+     * h’(k) = q - k mod q, where the secondary prime factor q is the smallest
      * prime less than the current capacity.
      *
      * @param h1 the precalculated hash value of the given key
-     * @param k the key
+     * @param k  the key
      * @return index of found entry or if not found
      */
     protected int findSlot(int h1, K k) {
@@ -77,23 +79,33 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
         int avail = -1;
         int j = h1;
 
-        /*do {
-
-        } while (j!=h1)*/
-
-        return 1;
+        do {
+            totalProbes++;
+            if (isAvailable(j)) {
+                if (avail == -1) {
+                    avail = j;
+                }
+                if (table[j] == null) {
+                    break;
+                }
+            } else if (table[j].getKey().equals(k) || table[j].getKey().equals(h1 + (secondaryHashValue(k)))) {
+                return j;
+            }
+            j = ((h1 + (j * secondaryHashValue(k))) % capacity);
+        } while (j != h1);
+        return -(avail + 1);
     }
 
     /**
-     * Returns value of secondary hash function h’(k) = q - k mod q, 
+     * Returns value of secondary hash function h’(k) = q - k mod q,
      * where k is the hash code for key (i.e. key.hashCode()).*
      */
     private int secondaryHashValue(K key) {
         //implement this method
-        return q - key.hashCode() % q;
+        return q - (key.hashCode() % q);
     }
 
-  //Selects secondary hash prime to be the largest prime less than cap
+    //Selects secondary hash prime to be the largest prime less than cap
     int selectSecondaryHashPrime(int cap) {
         //
         for (int i = cap - 1; i > 0; i--) {
