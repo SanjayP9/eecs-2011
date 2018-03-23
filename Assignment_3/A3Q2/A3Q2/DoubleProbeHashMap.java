@@ -88,10 +88,10 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
                 if (table[j] == null) {
                     break;
                 }
-            } else if (table[j].getKey().equals(k) || table[j].getKey().equals(h1 + (secondaryHashValue(k)))) {
+            } else if (table[j].getKey().equals(k)) {
                 return j;
             }
-            j = ((h1 + (j * secondaryHashValue(k))) % capacity);
+            j = (j + secondaryHashValue(k)) % capacity;
         } while (j != h1);
         return -(avail + 1);
     }
@@ -102,7 +102,7 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
      */
     private int secondaryHashValue(K key) {
         //implement this method
-        return q - (key.hashCode() % q);
+        return q - (Math.abs(key.hashCode()) % q);
     }
 
     //Selects secondary hash prime to be the largest prime less than cap
