@@ -56,7 +56,6 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
     protected void resize(int newCap) {
         //Implement this method.  Note that you can make use of the resize 
         //method of probeHashMap with a super.resize call.
-
         q = selectSecondaryHashPrime(newCap);
         super.resize(newCap);
     }
@@ -75,7 +74,6 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
      */
     protected int findSlot(int h1, K k) {
         //modify the findSlot method of probeHashMap to use double hashing
-
         int avail = -1;
         int j = h1;
 
