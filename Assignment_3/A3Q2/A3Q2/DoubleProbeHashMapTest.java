@@ -1,6 +1,7 @@
 package A3Q2;
 
 import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
 
 import java.util.*;
 
@@ -56,12 +57,12 @@ public class DoubleProbeHashMapTest {
                             fail("rip");
                         }
                     } catch (Exception ex) {
-                        System.out.println("Something Ripped");
+                        fail("Something Ripped");
                     }
                 }
             } while (result != null);
         } catch (Exception x) {
-            System.out.println("File not found");
+            fail("File not found");
         }
     }
 

@@ -37,7 +37,6 @@ public class BSTRange<K, V> extends TreeMap<K, V> {
         if (this.compare(pos.getElement().getKey(), k) >= 0) {
             L.addLast(pos.getElement());
         }
-
         if (right(pos).getElement() != null) {
             findAllAbove(k, right(pos), L);
         }
@@ -54,7 +53,6 @@ public class BSTRange<K, V> extends TreeMap<K, V> {
         if (this.compare(pos.getElement().getKey(), k) <= 0) {
             L.addLast(pos.getElement());
         }
-
         if (right(pos).getElement() != null) {
             findAllBelow(k, this.right(pos), L);
         }
