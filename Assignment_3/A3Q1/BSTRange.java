@@ -15,9 +15,6 @@ public class BSTRange<K, V> extends TreeMap<K, V> {
      */
     public Position<Entry<K, V>> findLowestCommonAncestor(K k1, K k2, Position<Entry<K, V>> pos) {
         //implement this method
-       /* if (this.left(pos) == null && this.right(pos) == null) {
-            return pos;
-        }*/
         if (this.compare(pos.getElement().getKey(), k1) > 0 && this.compare(pos.getElement().getKey(), k2) > 0 && this.left(pos).getElement() != null) {
             return findLowestCommonAncestor(k1, k2, this.left(pos));
         } else if (this.compare(pos.getElement().getKey(), k1) < 0 && this.compare(pos.getElement().getKey(), k2) < 0 && this.right(pos).getElement() != null) {
@@ -65,7 +62,6 @@ public class BSTRange<K, V> extends TreeMap<K, V> {
         //implement this method
         PositionalList<Entry<K, V>> list = new LinkedPositionalList<>();
 
-
         if (this.size() != 0 && this.compare(k1, k2) <= 0) {
 
             Position<Entry<K, V>> LCA = findLowestCommonAncestor(k1, k2, root());
@@ -73,11 +69,9 @@ public class BSTRange<K, V> extends TreeMap<K, V> {
             if (left(LCA).getElement() != null) {
                 findAllAbove(k1, left(LCA), list);
             }
-
-            if (this.compare(k1, LCA.getElement()) <= 0 && this.compare(LCA.getElement(), k2) <= 0)
+            if (this.compare(k1, LCA.getElement()) <= 0 && this.compare(LCA.getElement(), k2) <= 0) {
                 list.addLast(LCA.getElement());
-
-
+            }
             if (right(LCA).getElement() != null) {
                 findAllBelow(k2, right(LCA), list);
             }

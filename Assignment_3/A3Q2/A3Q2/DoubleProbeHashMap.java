@@ -74,14 +74,14 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
      */
     protected int findSlot(int h1, K k) {
         //modify the findSlot method of probeHashMap to use double hashing
-        int avail = -1;
+        int availableSlot = -1;
         int j = h1;
 
         do {
             totalProbes++;
             if (isAvailable(j)) {
-                if (avail == -1) {
-                    avail = j;
+                if (availableSlot == -1) {
+                    availableSlot = j;
                 }
                 if (table[j] == null) {
                     break;
@@ -89,9 +89,10 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
             } else if (table[j].getKey().equals(k)) {
                 return j;
             }
-            j = (j + secondaryHashValue(k)) % capacity;
+            // Iterates through the table using double hashing
+            j = ((j + secondaryHashValue(k)) % capacity);
         } while (j != h1);
-        return -(avail + 1);
+        return -(availableSlot + 1);
     }
 
     /**
@@ -100,7 +101,7 @@ public class DoubleProbeHashMap<K, V> extends ProbeHashMap<K, V> {
      */
     private int secondaryHashValue(K key) {
         //implement this method
-        return q - (Math.abs(key.hashCode()) % q);
+        return (q - (Math.abs(key.hashCode()) % q));
     }
 
     //Selects secondary hash prime to be the largest prime less than cap
