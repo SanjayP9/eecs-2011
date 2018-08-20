@@ -79,21 +79,4 @@ public class YorkArrays {
 
         return result;
     }
-
-
-    public static void main(String[] args) {
-        Integer[] a = {10, 45, 55, 78, 93};
-        Integer[] b = {22, 23, 25, 25, 41};
-
-        Integer[] sort = {15, 12, 15, 28, 46, 13, 56, 74};
-
-        //Integer[] result = (merge(a, b));
-        Integer[] result = (mergeSort(a));
-
-        System.out.println("\n\n\nANSWER:\n");
-
-        for (Integer i : result) {
-            System.out.print(i + " ");
-        }
-    }
 }

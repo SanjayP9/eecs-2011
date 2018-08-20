@@ -21,7 +21,7 @@ public class testFindAllInRange {
             medalList = medals.findAllInRange(k1, k2);
             entryIter = medalList.iterator();
 
-            System.out.println("The countries ranked from " + k1 + " to " + k2 + " in medal standings are:");
+            System.out.println("The countries ranked from " + k1 + " to " + k2 + " in medal standings are: (Should output nothing)");
             while (entryIter.hasNext()) {
                 System.out.println(entryIter.next().getValue());
             }
@@ -46,7 +46,7 @@ public class testFindAllInRange {
             medalList = medals.findAllInRange(k1, k2);
             entryIter = medalList.iterator();
 
-            System.out.println("The countries ranked from " + k1 + " to " + k2 + " in medal standings are: (should bw Canada, USA, Netherlands, Sweden and South Korea)");
+            System.out.println("The countries ranked from " + k1 + " to " + k2 + " in medal standings are: (should be Canada, USA, Netherlands, Sweden and South Korea)");
             while (entryIter.hasNext()) {
                 System.out.println(entryIter.next().getValue());
             }
